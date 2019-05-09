@@ -5,10 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+/**
+ * Holds all main classes
+ * (BrowserFactory, BaseTest, BasePage, BaseElement)
+ *
+ * @author Yaroslav Lazakovich
+ * @version 1.0
+ */
 public abstract class BaseEntity {
     //TODO Log field
+    protected WebDriver driver;
     private static int step = 1;
-    private WebDriver driver;
 
     @BeforeClass
     public void before() {
