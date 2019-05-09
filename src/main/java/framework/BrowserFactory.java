@@ -1,5 +1,6 @@
 package framework;
 
+import framework.utils.CapabilityGenerator;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -62,7 +63,7 @@ public class BrowserFactory extends BaseEntity {
         switch (browserName.toLowerCase()) {
             case CHROME:
                 setPropertyBrowser(PROPERTY_CHROME, DRIVER_CHROME);
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(CapabilityGenerator.getChromeCapability());
                 break;
             default:
                 setPropertyBrowser(PROPERTY_CHROME, DRIVER_CHROME);
