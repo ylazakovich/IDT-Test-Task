@@ -1,6 +1,8 @@
 package framework;
 
 import framework.utils.CapabilityGenerator;
+import framework.utils.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -15,6 +17,7 @@ import java.nio.file.Paths;
  * @version 1.0
  */
 public class BrowserFactory extends BaseEntity {
+
     private static final String OPERATION_SYSTEM_NAME = System.getProperty("os.name");
     private static final String PROPERTY_CHROME = "webdriver.chrome.driver";
     private static final String DRIVER_CHROME = "drivers/chromedriver";
@@ -24,17 +27,22 @@ public class BrowserFactory extends BaseEntity {
     private static final String URL = PropertyReader.getProperty("url");
     private static String driverPath = "src/main/resources/";
     private static BrowserFactory instance;
+    private WebDriver driver;
     //TODO Log field
 
     public static BrowserFactory getInstance() {
-        try {
-            if (instance == null) {
+        if (instance == null) {
+            try {
                 instance = new BrowserFactory();
+            } catch (IOException e) {
+                //TODO log.error(io)
             }
-        } catch (IOException e) {
-            //TODO log.error(io)
         }
         return instance;
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 
     public static String getDriverPath() {
@@ -43,14 +51,13 @@ public class BrowserFactory extends BaseEntity {
 
     private BrowserFactory() throws IOException {
         driverPath = new File(driverPath).getCanonicalPath();
-        //TODO initBrowser()
+        initBrowser(BROWSER_NAME);
+        WebDriverManager.openUrl(driver, URL);
         //TODO log.info
-        //TODO WebDriverManager.openUrl()
     }
 
     private static String initOs(String operationSysName) {
         System.out.println("Current OS: " + System.getProperties().getProperty("os.name"));
-        ;
         return operationSysName.toLowerCase().equals(LINUX) ? "" : ".exe";
     }
 
@@ -73,8 +80,7 @@ public class BrowserFactory extends BaseEntity {
 
     //TODO check work status for initBrowser();
     @Test
-    public void openBrowser() {
+    public void testOpenBrowser() {
         initBrowser(BROWSER_NAME);
     }
-
 }
