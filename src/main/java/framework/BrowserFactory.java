@@ -1,6 +1,7 @@
 package framework;
 
 import framework.utils.CapabilityGenerator;
+import framework.utils.PropertyReader;
 import framework.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

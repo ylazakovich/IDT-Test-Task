@@ -1,4 +1,4 @@
-package framework;
+package framework.utils;
 
 import org.testng.annotations.Test;
 
