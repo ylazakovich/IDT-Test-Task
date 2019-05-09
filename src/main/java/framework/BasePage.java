@@ -1,6 +1,6 @@
 package framework;
 
-import framework.pageElements.Button;
+import framework.element.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

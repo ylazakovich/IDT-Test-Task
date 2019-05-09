@@ -73,4 +73,8 @@ public abstract class BaseElement extends BaseEntity {
         action.perform();
     }
 
+    private void waitForIsElementPresent() {
+        Waiter.presenceOfElementLocated(by);
+    }
+
 }
