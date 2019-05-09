@@ -73,5 +73,4 @@ public abstract class BaseElement extends BaseEntity {
         action.perform();
     }
 
-    //TODO abstract String getElementType()
 }

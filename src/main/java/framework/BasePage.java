@@ -4,6 +4,7 @@ import framework.pageElements.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 /**
  * Realizes PageObject pattern
@@ -19,7 +20,7 @@ public abstract class BasePage extends BaseEntity {
 
     public BasePage(By locator) {
         init(locator);
-        //TODO Assert.assertEquals(true, isOpen(locator))
+        Assert.assertEquals(true, isOpen(locator));
         //TODO info(log.getLogLoc("loc.open.page"))
     }
     //TODO need realize method isOpen(). Create BaseElement
