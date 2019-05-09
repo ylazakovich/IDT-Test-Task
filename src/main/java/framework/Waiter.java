@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * Realize imlicit/explicit/fluent waits
@@ -30,6 +31,15 @@ public class Waiter extends BaseEntity {
         new WebDriverWait(driver, LONG_TIME_OUT.getSeconds()).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
+    public static <V> void fluentWait(Function<? super WebDriver, V> expectedConditions) {
+        FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
+                .withTimeout(LONG_TIME_OUT)
+                .pollingEvery(TIME_MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+        if (expectedConditions != null) {
+            fluentWait.until(expectedConditions);
+        }
+    }
     public static FluentWait<WebDriver> fluentWaitEx(WebDriver driver, By by) {
         FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver).
                 withTimeout(LONG_TIME_OUT)
@@ -45,7 +55,20 @@ public class Waiter extends BaseEntity {
         fluentWaitEx(driver, by);
     }
 
-    public static FluentWait<WebDriver> fluentWait(WebDriver driver) {
-        return fluentWaitEx(driver, null);
+
+    public static void elementToBeClickable(By by) {
+        fluentWait(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public static void invisibilityOfElementLocated(By by) {
+        fluentWait(ExpectedConditions.invisibilityOfElementLocated(by));
+    }
+
+    public static void presenceOfElementLocated(By by) {
+        fluentWait(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public static void visibilityOfElementLocated(By by) {
+        fluentWait(ExpectedConditions.visibilityOfElementLocated(by));
     }
 }

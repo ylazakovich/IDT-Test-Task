@@ -10,7 +10,7 @@ public abstract class BaseTest extends BaseEntity {
         //TODO logger.initStep(step);
         driver = BrowserFactory.getInstance().getDriver();
         WebDriverManager.maximize(driver);
-        Waiter.fluentWait(driver);
+        Waiter.implicitWait(driver);
     }
 
     @AfterClass

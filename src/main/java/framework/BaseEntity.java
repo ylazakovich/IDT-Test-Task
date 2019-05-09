@@ -11,6 +11,6 @@ import org.openqa.selenium.WebDriver;
  */
 public abstract class BaseEntity {
     //TODO Log field
-    protected WebDriver driver;
+    protected static WebDriver driver;
     private static int step = 1;
 }
