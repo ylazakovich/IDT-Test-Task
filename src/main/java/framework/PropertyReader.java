@@ -34,9 +34,9 @@ public class PropertyReader {
         try {
             properties.load(path);
         } catch (FileNotFoundException e) {
-//            log.error("loc.err.properties.not.found");
+            //TODO log.error("loc.err.properties.not.found");
         } catch (IOException e) {
-//            log.error("loc.err.properties.file.path");
+            //TODO log.error("loc.err.properties.file.path");
 
         }
     }

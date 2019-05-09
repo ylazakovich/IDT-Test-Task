@@ -23,7 +23,7 @@ public abstract class BasePage extends BaseEntity {
         Assert.assertEquals(true, isOpen(locator));
         //TODO info(log.getLogLoc("loc.open.page"))
     }
-    //TODO need realize method isOpen(). Create BaseElement
+
     public boolean isOpen(By titleLocator) {
         this.button = new Button(titleLocator);
         return button.isDisplayed();
