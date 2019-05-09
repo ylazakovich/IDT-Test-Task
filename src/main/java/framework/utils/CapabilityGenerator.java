@@ -7,6 +7,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Allows set Capabilities for drivers
+ *
+ * @author Yaroslav Lazakovich
+ * @version 1.0
+ */
 public class CapabilityGenerator {
     public static ChromeOptions getChromeCapability() {
         DesiredCapabilities cap = DesiredCapabilities.chrome();

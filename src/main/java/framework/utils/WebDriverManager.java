@@ -3,6 +3,12 @@ package framework.utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
+/**
+ * Allows manage current driver
+ *
+ * @author Yaroslav Lazakovich
+ * @version 1.0
+ */
 public class WebDriverManager {
     //TODO Log field
 
