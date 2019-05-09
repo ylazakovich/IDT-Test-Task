@@ -41,7 +41,7 @@ public class PropertyReader {
         }
     }
 
-    private static String getProperty(String property) {
+    public static String getProperty(String property) {
         getInstance();
         return properties.getProperty(property);
     }
