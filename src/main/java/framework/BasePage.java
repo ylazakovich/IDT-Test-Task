@@ -1,5 +1,6 @@
 package framework;
 
+import framework.pageElements.Button;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ public abstract class BasePage extends BaseEntity {
     //TODO Log field
     //TODO private Button button;
     private By locator;
+    private Button button;
 
     public BasePage(By locator) {
         init(locator);
@@ -21,12 +23,12 @@ public abstract class BasePage extends BaseEntity {
         //TODO info(log.getLogLoc("loc.open.page"))
     }
     //TODO need realize method isOpen(). Create BaseElement
-//    public boolean isOpen(By titleLocator) {
-//        this.button = new Button(titleLocator);
-//        return button.isDisplayed();
-//    }
+    public boolean isOpen(By titleLocator) {
+        this.button = new Button(titleLocator);
+        return button.isDisplayed();
+    }
 
-    public void init(By pageLocator) {
+    private void init(By pageLocator) {
         this.locator = pageLocator;
     }
 
