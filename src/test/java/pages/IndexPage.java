@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class IndexPage extends BasePage {
-    //TODO Log logger
+    private Button button;
 
     public IndexPage() {
         super(By.xpath("//a[contains(@class, 'icon-button') and contains(@href, 'hello')]"), "Index page");
@@ -16,8 +16,9 @@ public class IndexPage extends BasePage {
 
     public CompanyPage goToCompanies() {
         logger.step("Go to Companies Page");
-        Button companyB = new Button(By.xpath("//a[@href='//companies.dev.by']"), "Company button");
-        companyB.moveToElementAndClick();
+        button = new Button(By.xpath("//a[@href='//companies.dev.by']"), "Company button");
+        button.moveToElementAndClick();
+
         return new CompanyPage();
     }
 }
