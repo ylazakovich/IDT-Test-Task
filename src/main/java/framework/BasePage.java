@@ -14,8 +14,6 @@ import org.testng.Assert;
  */
 
 public abstract class BasePage extends BaseEntity {
-    //TODO Log field
-    //TODO private Button button;
     private By locator;
     private String tittle;
     private Button button;
@@ -23,7 +21,7 @@ public abstract class BasePage extends BaseEntity {
     public BasePage(By locator, String tittle) {
         init(locator, tittle);
         Assert.assertTrue(isOpen(locator));
-        //TODO info(log.getLogLoc("loc.open.page"))
+        logger.info(logger.getLoc("loc.open.page"));
     }
 
     public boolean isOpen(By titleLocator) {

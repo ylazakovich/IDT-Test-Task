@@ -18,11 +18,11 @@ import java.util.ResourceBundle;
 public class Log{
     public static final String LOG_DELIMITER = "::";
     private static final Logger LOG = LogManager.getLogger(Log.class.getName());
-    private static Locale locale = new Locale(PropertyReader.getPropertyOrDefault("locale", "en"));
     private static final String SEPARATOR = "\n\r======================TEST END======================\n\r";
+    private static Locale locale = new Locale(PropertyReader.getPropertyOrDefault("locale", "en"));
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("localization/" + locale.toString().toLowerCase(), new UTF8Control());
     private static Log instance = null;
     private static int step;
-    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("localization/" + locale.toString().toLowerCase(), new UTF8Control());
 
     public static synchronized Log getInstance() {
         if (instance == null) {
@@ -62,5 +62,10 @@ public class Log{
     public void debug(String message) {
         LOG.debug(message);
     }
+
+    public void makeSeparator() {
+        LOG.info(SEPARATOR);
+    }
+
 
 }

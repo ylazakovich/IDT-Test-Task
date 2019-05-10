@@ -25,7 +25,6 @@ public class BrowserFactory extends BaseEntity {
     private static final String DRIVER_PATH = "src/main/resources/";
     private static BrowserFactory instance;
     private WebDriver driver;
-    //TODO Log field
 
     public static BrowserFactory getInstance() {
         if (instance == null) {
@@ -40,7 +39,7 @@ public class BrowserFactory extends BaseEntity {
 
     private BrowserFactory() {
         driver = initBrowser(BROWSER_NAME);
-        //TODO log.info
+        logger.info(logger.getLoc("loc.open.browser"));
     }
 
     private static String initOs() {

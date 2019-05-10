@@ -13,8 +13,8 @@ import org.testng.annotations.BeforeMethod;
  * @version 1.0
  */
 public abstract class BaseEntity {
-    //TODO Log field
     protected static WebDriver driver;
+    protected static Log logger = Log.getInstance();
 
     @BeforeMethod
     public void before() {
@@ -22,11 +22,12 @@ public abstract class BaseEntity {
         WebDriverManager.maximize(driver);
         WebDriverManager.openUrl(driver);
         Waiter.implicitWait(driver);
+        logger.info(logger.getLoc("loc.test.start"));
     }
 
     @AfterMethod
     public void turnDown() {
         WebDriverManager.close(driver);
-        //TODO logger.makeSeparator();
+        logger.makeSeparator();
     }
 }

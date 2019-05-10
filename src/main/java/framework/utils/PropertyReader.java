@@ -1,5 +1,8 @@
 package framework.utils;
 
+import framework.BaseEntity;
+import framework.Log;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -9,11 +12,12 @@ import java.util.Properties;
  * @author Yaroslav Lazakovich
  * @version 1.0
  */
-public class PropertyReader {
+public class PropertyReader{
     private static PropertyReader instance;
     private static Properties properties;
-    //TODO "src/test/resources/config.properties"
     private static final String propertyFilePath = "src/main/resources/config.properties";
+    private static Log log = Log.getInstance();
+
 
     private PropertyReader() {
         BufferedReader reader;
@@ -23,11 +27,10 @@ public class PropertyReader {
             properties = new Properties();
             initProperties(reader);
         } catch (FileNotFoundException e) {
-            //TODO
-           // log.error("loc.err.properties.not.found");
+            log.error("loc.err.properties.not.found");
             throw new RuntimeException();
         } catch (IOException e) {
-           // log.error("loc.err.properties.file.path");
+            log.error("loc.err.properties.file.path");
         }
     }
 
@@ -36,7 +39,7 @@ public class PropertyReader {
             properties.load(reader);
             reader.close();
         } catch (IOException e) {
-           // log.error("log.err.file.closed");
+            log.error("log.err.file.closed");
         }
     }
 

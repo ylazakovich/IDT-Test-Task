@@ -1,5 +1,6 @@
 package framework.utils;
 
+import framework.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
@@ -11,7 +12,7 @@ import org.openqa.selenium.WebDriverException;
  */
 public class WebDriverManager {
     private static final String URL = PropertyReader.getProperty("url");
-    //TODO Log field
+    private static Log log = Log.getInstance();
 
     public static void openUrl(WebDriver driver) {
         driver.get(URL);
@@ -31,7 +32,7 @@ public class WebDriverManager {
                 driver.quit();
             }
         } catch (WebDriverException exception) {
-        //TODO log.error("loc.err.wd.ex")
+            log.error("loc.err.wd.ex");
         } finally {
             driver.quit();
         }
