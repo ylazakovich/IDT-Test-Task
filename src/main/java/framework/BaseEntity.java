@@ -1,5 +1,6 @@
 package framework;
 
+import framework.utils.Log;
 import framework.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;

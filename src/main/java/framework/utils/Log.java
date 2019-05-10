@@ -1,10 +1,7 @@
-package framework;
+package framework.utils;
 
-import framework.utils.PropertyReader;
-import framework.utils.UTF8Control;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.Test;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

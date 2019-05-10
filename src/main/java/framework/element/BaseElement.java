@@ -75,6 +75,15 @@ public abstract class BaseElement extends BaseEntity {
                 .perform();
     }
 
+    public void moveToElementAndClick(int index) {
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(getElements().get(index))
+                .click(getElement())
+                .build()
+                .perform();
+    }
+
     public void click() {
         getElement().click();
     }

@@ -1,8 +1,5 @@
 package framework.utils;
 
-import framework.BaseEntity;
-import framework.Log;
-
 import java.io.*;
 import java.util.Properties;
 

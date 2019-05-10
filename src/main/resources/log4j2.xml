@@ -8,7 +8,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name= "framework.Log" level="info" additivity="false">
+        <Logger name= "framework.utils.Log" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
