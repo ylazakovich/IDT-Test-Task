@@ -1,4 +1,4 @@
-package pages;
+package pageobjects;
 
 import framework.BasePage;
 import org.openqa.selenium.By;
@@ -11,7 +11,4 @@ public class IndexPage extends BasePage {
         super(indexPageLocator);
     }
 
-    public static By getIndexPageLocator() {
-        return indexPageLocator;
-    }
 }

@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriverException;
  */
 public class WebDriverManager {
     //TODO Log field
-
     public static void openUrl(WebDriver driver, String url) {
         driver.get(url);
     }
@@ -26,13 +25,11 @@ public class WebDriverManager {
 
     public static void close(WebDriver driver) {
         try {
-            if (driver != null) {
-                driver.quit();
-            }
+            if (driver != null) driver.quit();
         } catch (WebDriverException exception) {
         //TODO log.error("loc.err.wd.ex")
         } finally {
-            driver.quit();
+            if (driver != null) driver.quit();
         }
     }
 }

@@ -46,6 +46,12 @@ public class PropertyReader {
         return properties.getProperty(property);
     }
 
+    public static String getPropertyOrDefault(String propertyName, String defaultValue) {
+        String result = getProperty(propertyName);
+        return (null == result) ? defaultValue : result;
+    }
+
+
     // TODO check work status of PropertyReader
     @Test
     public void testGetProperty() {

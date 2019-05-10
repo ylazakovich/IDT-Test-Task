@@ -1,5 +1,7 @@
-package framework;
+package framework.element;
 
+import framework.BaseEntity;
+import framework.Waiter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;

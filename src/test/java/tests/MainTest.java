@@ -1,8 +1,8 @@
-package classes;
+package tests;
 
 import framework.BaseTest;
 import org.testng.annotations.Test;
-import pages.IndexPage;
+import pageobjects.IndexPage;
 
 public class MainTest extends BaseTest {
     private IndexPage page;
