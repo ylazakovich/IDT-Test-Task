@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 /**
- * Holds all main classes
+ * Holds all main tests
  * (BrowserFactory, BaseTest, BasePage, BaseElement)
  *
  * @author Yaroslav Lazakovich
@@ -27,5 +27,6 @@ public abstract class BaseEntity {
     @AfterMethod
     public void turnDown() {
         WebDriverManager.close(driver);
+        //TODO logger.makeSeparator();
     }
 }

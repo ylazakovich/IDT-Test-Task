@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
@@ -18,22 +16,21 @@ import java.nio.file.Paths;
  * @version 1.0
  */
 public class BrowserFactory extends BaseEntity {
-
     private static final String OPERATION_SYSTEM_NAME = System.getProperty("os.name");
     private static final String PROPERTY_CHROME = "webdriver.chrome.driver";
     private static final String DRIVER_CHROME = "drivers/chromedriver";
     private static final String CHROME = "chrome";
     private static final String LINUX = "linux";
     private static final String BROWSER_NAME = PropertyReader.getProperty("browserName");
-    private static final String URL = PropertyReader.getProperty("url");
-    private static String driverPath = "src/main/resources/";
+    private static final String DRIVER_PATH = "src/main/resources/";
     private static BrowserFactory instance;
     private WebDriver driver;
     //TODO Log field
 
     public static BrowserFactory getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new BrowserFactory();
+        }
         return instance;
     }
 
@@ -41,22 +38,18 @@ public class BrowserFactory extends BaseEntity {
         return driver;
     }
 
-    public static String getDriverPath() {
-        return driverPath;
-    }
-
     private BrowserFactory() {
         driver = initBrowser(BROWSER_NAME);
         //TODO log.info
     }
 
-    private static String initOs(String operationSysName) {
+    private static String initOs() {
         System.out.println("Current OS: " + System.getProperties().getProperty("os.name"));
-        return operationSysName.toLowerCase().equals(LINUX) ? "" : ".exe";
+        return OPERATION_SYSTEM_NAME.toLowerCase().equals(LINUX) ? "" : ".exe";
     }
 
     private void setPropertyBrowser(String prop, String driverName) {
-        System.setProperty(prop, Paths.get(driverPath, driverName.concat(initOs(OPERATION_SYSTEM_NAME))).toString());
+        System.setProperty(prop, Paths.get(DRIVER_PATH, driverName.concat(initOs())).toString());
     }
 
     private WebDriver initBrowser(String browserName) {
@@ -72,4 +65,5 @@ public class BrowserFactory extends BaseEntity {
         }
         return driver;
     }
+
 }

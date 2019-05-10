@@ -12,15 +12,16 @@ import org.testng.Assert;
  * @author Yaroslav Lazakovich
  * @version 1.0
  */
+
 public abstract class BasePage extends BaseEntity {
     //TODO Log field
     //TODO private Button button;
     private By locator;
-    private String title;
+    private String tittle;
     private Button button;
 
-    public BasePage(By locator, String title) {
-        init(locator, title);
+    public BasePage(By locator, String tittle) {
+        init(locator, tittle);
         Assert.assertTrue(isOpen(locator));
         //TODO info(log.getLogLoc("loc.open.page"))
     }
@@ -30,14 +31,8 @@ public abstract class BasePage extends BaseEntity {
         return button.isDisplayed();
     }
 
-    private void init(By pageLocator, String title) {
+    private void init(By pageLocator, String tittle) {
         this.locator = pageLocator;
-        this.title = title;
-    }
-
-    //TODO use for skip advertisment
-    public void escapeFromADB() {
-        WebElement body = driver.findElement(By.tagName("body"));
-        body.sendKeys(Keys.SPACE);
+        this.tittle = tittle;
     }
 }

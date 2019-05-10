@@ -1,7 +1,5 @@
 package framework.utils;
 
-import org.testng.annotations.Test;
-
 import java.io.*;
 import java.util.Properties;
 
@@ -14,6 +12,7 @@ import java.util.Properties;
 public class PropertyReader {
     private static PropertyReader instance;
     private static Properties properties;
+    //TODO "src/test/resources/config.properties"
     private static final String propertyFilePath = "src/main/resources/config.properties";
 
     private PropertyReader() {
@@ -25,10 +24,10 @@ public class PropertyReader {
             initProperties(reader);
         } catch (FileNotFoundException e) {
             //TODO
-            // log.error("loc.err.properties.not.found");
+           // log.error("loc.err.properties.not.found");
             throw new RuntimeException();
         } catch (IOException e) {
-            // log.error("loc.err.properties.file.path");
+           // log.error("loc.err.properties.file.path");
         }
     }
 
@@ -37,7 +36,7 @@ public class PropertyReader {
             properties.load(reader);
             reader.close();
         } catch (IOException e) {
-            // log.error("log.err.file.closed");
+           // log.error("log.err.file.closed");
         }
     }
 

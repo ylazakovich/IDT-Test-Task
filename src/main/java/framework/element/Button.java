@@ -10,10 +10,12 @@ import org.openqa.selenium.WebElement;
  * @version 1.0
  */
 public class Button extends BaseElement {
-    private static WebElement element;
 
     public Button(By by) {
         super(by);
     }
 
+    public Button(By by, String name) {
+        super(name, by);
+    }
 }

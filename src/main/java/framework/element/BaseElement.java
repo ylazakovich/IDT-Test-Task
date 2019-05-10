@@ -4,7 +4,6 @@ import framework.BaseEntity;
 import framework.Waiter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
@@ -76,8 +75,11 @@ public abstract class BaseElement extends BaseEntity {
                 .perform();
     }
 
+    public void click() {
+        getElement().click();
+    }
+
     private void waitForIsElementPresent() {
         Waiter.presenceOfElementLocated(by);
     }
-
 }
