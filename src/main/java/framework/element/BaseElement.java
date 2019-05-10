@@ -17,10 +17,7 @@ import java.util.List;
  * @version 1.0
  */
 public abstract class BaseElement extends BaseEntity {
-    private List<String> labelList;
     private WebElement element;
-    private Actions actions;
-    private Action action;
     private String name;
     private By by;
 
@@ -33,12 +30,13 @@ public abstract class BaseElement extends BaseEntity {
         this.by = by;
     }
 
-    public WebElement getElement(By by) {
+    public WebElement getElement() {
+        waitForIsElementPresent();
         return by != null ? driver.findElement(by) : element;
     }
 
-    public String getElementText(WebElement element) {
-        element = getElement(by);
+    public String getElementText() {
+        element = getElement();
         if (isDisplayed()) {
             return element.getText();
         } else {
@@ -46,22 +44,23 @@ public abstract class BaseElement extends BaseEntity {
         }
     }
 
-    public List<WebElement> getElements(By by) {
+    public List<WebElement> getElements() {
+        waitForIsElementPresent();
         return driver.findElements(by);
     }
 
-    public List<String> getTextElements(By by) {
-        labelList = new ArrayList<>();
+    public List<String> getTextElements() {
+        List<String> text = new ArrayList<>();
         for (WebElement webElement :
-                getElements(by)) {
-            labelList.add(getElementText(webElement));
+                getElements()) {
+            text.add(webElement.getText());
         }
-        return labelList;
+        return text;
     }
 
     public boolean isDisplayed() {
         try {
-            element = getElement(by);
+            element = getElement();
             return element.isDisplayed();
         } catch (Exception e) {
             return false;
@@ -69,10 +68,12 @@ public abstract class BaseElement extends BaseEntity {
     }
 
     public void moveToElementAndClick() {
-        actions = new Actions(driver);
-        actions.moveToElement(getElement(by)).click(getElement(by));
-        action = actions.build();
-        action.perform();
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(getElement())
+                .click(getElement())
+                .build()
+                .perform();
     }
 
     private void waitForIsElementPresent() {

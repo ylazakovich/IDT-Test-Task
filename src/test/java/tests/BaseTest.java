@@ -1,10 +1,14 @@
-package framework;
+package tests;
 
+import framework.BaseEntity;
+import framework.BrowserFactory;
+import framework.Waiter;
 import framework.utils.WebDriverManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public abstract class BaseTest extends BaseEntity {
+
     @BeforeClass
     public void before() {
         //TODO logger.initStep(step);
@@ -13,9 +17,4 @@ public abstract class BaseTest extends BaseEntity {
         Waiter.implicitWait(driver);
     }
 
-    @AfterClass
-    public void turnDown() {
-        WebDriverManager.close(driver);
-        //TODO logger.makeSeparator();
-    }
 }

@@ -10,9 +10,10 @@ import org.openqa.selenium.WebDriverException;
  * @version 1.0
  */
 public class WebDriverManager {
+    private static final String URL = PropertyReader.getProperty("url");
     //TODO Log field
-    public static void openUrl(WebDriver driver, String url) {
-        driver.get(url);
+    public static void openUrl(WebDriver driver) {
+        driver.get(URL);
     }
 
     public static void maximize(WebDriver driver) {
@@ -29,7 +30,7 @@ public class WebDriverManager {
         } catch (WebDriverException exception) {
         //TODO log.error("loc.err.wd.ex")
         } finally {
-            if (driver != null) driver.quit();
+           driver.quit();
         }
     }
 }

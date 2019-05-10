@@ -16,11 +16,12 @@ public abstract class BasePage extends BaseEntity {
     //TODO Log field
     //TODO private Button button;
     private By locator;
+    private String title;
     private Button button;
 
-    public BasePage(By locator) {
-        init(locator);
-        Assert.assertEquals(true, isOpen(locator));
+    public BasePage(By locator, String title) {
+        init(locator, title);
+        Assert.assertTrue(isOpen(locator));
         //TODO info(log.getLogLoc("loc.open.page"))
     }
 
@@ -29,8 +30,9 @@ public abstract class BasePage extends BaseEntity {
         return button.isDisplayed();
     }
 
-    private void init(By pageLocator) {
+    private void init(By pageLocator, String title) {
         this.locator = pageLocator;
+        this.title = title;
     }
 
     //TODO use for skip advertisment

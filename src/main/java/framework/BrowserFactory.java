@@ -32,13 +32,8 @@ public class BrowserFactory extends BaseEntity {
     //TODO Log field
 
     public static BrowserFactory getInstance() {
-        if (instance == null) {
-            try {
-                instance = new BrowserFactory();
-            } catch (IOException e) {
-                //TODO log.error(io)
-            }
-        }
+        if (instance == null)
+            instance = new BrowserFactory();
         return instance;
     }
 
@@ -50,10 +45,8 @@ public class BrowserFactory extends BaseEntity {
         return driverPath;
     }
 
-    private BrowserFactory() throws IOException {
-        driverPath = new File(driverPath).getCanonicalPath();
-        initBrowser(BROWSER_NAME);
-        WebDriverManager.openUrl(driver, URL);
+    private BrowserFactory() {
+        driver = initBrowser(BROWSER_NAME);
         //TODO log.info
     }
 
@@ -66,7 +59,7 @@ public class BrowserFactory extends BaseEntity {
         System.setProperty(prop, Paths.get(driverPath, driverName.concat(initOs(OPERATION_SYSTEM_NAME))).toString());
     }
 
-    private void initBrowser(String browserName) {
+    private WebDriver initBrowser(String browserName) {
         System.out.println("Current Browser: " + browserName);
         switch (browserName.toLowerCase()) {
             case CHROME:
@@ -77,11 +70,6 @@ public class BrowserFactory extends BaseEntity {
                 setPropertyBrowser(PROPERTY_CHROME, DRIVER_CHROME);
                 driver = new ChromeDriver();
         }
-    }
-
-    //TODO check work status for initBrowser();
-    @Test
-    public void testOpenBrowser() {
-        initBrowser(BROWSER_NAME);
+        return driver;
     }
 }

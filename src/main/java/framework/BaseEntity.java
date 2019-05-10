@@ -1,6 +1,9 @@
 package framework;
 
+import framework.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 /**
  * Holds all main classes
@@ -12,5 +15,17 @@ import org.openqa.selenium.WebDriver;
 public abstract class BaseEntity {
     //TODO Log field
     protected static WebDriver driver;
-    private static int step = 1;
+
+    @BeforeMethod
+    public void before() {
+        driver = BrowserFactory.getInstance().getDriver();
+        WebDriverManager.maximize(driver);
+        WebDriverManager.openUrl(driver);
+        Waiter.implicitWait(driver);
+    }
+
+    @AfterMethod
+    public void turnDown() {
+        WebDriverManager.close(driver);
+    }
 }

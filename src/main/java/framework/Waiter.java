@@ -40,6 +40,7 @@ public class Waiter extends BaseEntity {
             fluentWait.until(expectedConditions);
         }
     }
+
     public static FluentWait<WebDriver> fluentWaitEx(WebDriver driver, By by) {
         FluentWait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver).
                 withTimeout(LONG_TIME_OUT)
