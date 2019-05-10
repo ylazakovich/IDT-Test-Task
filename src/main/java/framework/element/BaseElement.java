@@ -49,6 +49,7 @@ public abstract class BaseElement extends BaseEntity {
     }
 
     public List<String> getTextElements() {
+        waitForIsElementPresent();
         List<String> text = new ArrayList<>();
         for (WebElement webElement :
                 getElements()) {

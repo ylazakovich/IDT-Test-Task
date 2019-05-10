@@ -21,6 +21,5 @@ public class Button extends BaseElement {
 
     public void linkButton(int index) {
         moveToElementAndClick(index);
-        logger.step("Link company [" + getElements().get(index).getText() + "]");
     }
 }
