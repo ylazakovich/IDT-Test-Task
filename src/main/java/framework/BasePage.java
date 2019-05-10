@@ -14,23 +14,23 @@ import org.testng.Assert;
  */
 
 public abstract class BasePage extends BaseEntity {
-    private By locator;
-    private String tittle;
+    private By pageLocator;
+    private String title;
     private Button button;
 
     public BasePage(By locator, String tittle) {
         init(locator, tittle);
-        Assert.assertTrue(isOpen(locator));
-        logger.info(logger.getLoc("loc.open.page"));
+        logger.info(logger.getLoc("loc.open.page") + " [" + tittle + "]");
+        Assert.assertTrue(isOpen());
     }
 
-    public boolean isOpen(By titleLocator) {
-        this.button = new Button(titleLocator);
+    public boolean isOpen() {
+        this.button = new Button(pageLocator);
         return button.isDisplayed();
     }
 
-    private void init(By pageLocator, String tittle) {
-        this.locator = pageLocator;
-        this.tittle = tittle;
+    private void init(By locator, String title) {
+        this.pageLocator = locator;
+        this.title = title;
     }
 }

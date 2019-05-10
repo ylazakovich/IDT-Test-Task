@@ -31,16 +31,8 @@ public class Log{
         return instance;
     }
 
-    public static void step(String message) {
-        LOG.info(("\n\r----------------STEP " + (step++) + "  " + message + "----------------\n\r"));
-    }
-
-    public void initStep(int steps) {
-        step = steps;
-    }
-
-    public String getLoc(final String key) {
-        return resourceBundle.getString(key);
+    public void step(String message) {
+        LOG.info(("\n\r----------------STEP " + (++step) + "  " + message + "----------------\n\r"));
     }
 
     public void info(final String message) {
@@ -65,6 +57,10 @@ public class Log{
 
     public void makeSeparator() {
         LOG.info(SEPARATOR);
+    }
+
+    public String getLoc(final String key) {
+        return resourceBundle.getString(key);
     }
 
 
