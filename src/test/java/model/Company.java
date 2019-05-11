@@ -3,23 +3,27 @@ package model;
 public class Company {
     private String name;
     private String email;
-    private String mobile;
+    private String phone;
     private String website;
 
 
     public Company() {
     }
 
-    public Company(String email, String mobile, String website) {
+    public Company(String name) {
+        this.name = name;
+    }
+
+    public Company(String email, String phone, String website) {
         this.email = email;
-        this.mobile = mobile;
+        this.phone = phone;
         this.website = website;
     }
 
-    public Company(String name, String email, String mobile, String website) {
+    public Company(String name, String email, String phone, String website) {
         this.name = name;
         this.email = email;
-        this.mobile = mobile;
+        this.phone = phone;
         this.website = website;
     }
 
@@ -31,8 +35,8 @@ public class Company {
         return email;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPhone() {
+        return phone;
     }
 
     public String getWebsite() {
@@ -47,8 +51,8 @@ public class Company {
         this.email = email;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setWebsite(String website) {
