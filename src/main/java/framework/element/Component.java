@@ -22,7 +22,4 @@ public class Component extends BaseElement {
         super(name, by);
     }
 
-    public void linkButton(int index) {
-        moveToElementAndClick(index);
-    }
 }
