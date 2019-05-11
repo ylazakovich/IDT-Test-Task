@@ -1,6 +1,7 @@
 package model;
 
 public class Company {
+    private String name;
     private String email;
     private String mobile;
     private String website;
@@ -15,6 +16,17 @@ public class Company {
         this.website = website;
     }
 
+    public Company(String name, String email, String mobile, String website) {
+        this.name = name;
+        this.email = email;
+        this.mobile = mobile;
+        this.website = website;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -25,6 +37,10 @@ public class Company {
 
     public String getWebsite() {
         return website;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setEmail(String email) {

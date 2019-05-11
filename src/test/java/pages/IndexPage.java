@@ -1,11 +1,11 @@
 package pages;
 
 import framework.BasePage;
-import framework.element.Button;
+import framework.element.Component;
 import org.openqa.selenium.By;
 
 public class IndexPage extends BasePage {
-    private Button button;
+    private Component component;
 
     public IndexPage() {
         super(By.xpath("//a[contains(@class, 'icon-button') and contains(@href, 'hello')]"), "Index page");
@@ -13,8 +13,8 @@ public class IndexPage extends BasePage {
 
     public CompaniesPage goToCompanies() {
         logger.step("Go to Companies Page");
-        button = new Button(By.xpath("//a[@href='//companies.dev.by']"), "Company button");
-        button.moveToElementAndClick();
+        component = new Component(By.xpath("//a[@href='//companies.dev.by']"), "Company button");
+        component.moveToElementAndClick();
 
         return new CompaniesPage();
     }

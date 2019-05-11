@@ -1,9 +1,7 @@
 package framework;
 
-import framework.element.Button;
+import framework.element.Component;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 /**
@@ -16,7 +14,7 @@ import org.testng.Assert;
 public abstract class BasePage extends BaseEntity {
     private By pageLocator;
     private String title;
-    private Button button;
+    private Component component;
 
     public BasePage(By locator, String tittle) {
         init(locator, tittle);
@@ -25,8 +23,8 @@ public abstract class BasePage extends BaseEntity {
     }
 
     public boolean isOpen() {
-        this.button = new Button(pageLocator);
-        return button.isDisplayed();
+        this.component = new Component(pageLocator);
+        return component.isDisplayed();
     }
 
     private void init(By locator, String title) {
