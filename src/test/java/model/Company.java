@@ -27,6 +27,16 @@ public class Company {
         this.website = website;
     }
 
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", website='" + website + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

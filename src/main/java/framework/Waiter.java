@@ -2,7 +2,10 @@ package framework;
 
 import framework.utils.PropertyReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,6 +22,9 @@ import java.util.function.Function;
  * @version 1.0
  */
 public class Waiter extends BaseEntity {
+    private final static Duration DEFAULT_TIME_SECONDS = Duration.ofSeconds(15);
+    private final static Duration DEFAULT_TIME_MILLISECONDS = Duration.ofMillis(10);
+    private final static long DEFAULT_TIME_OUT = 15;
     private static final Duration TIME_MILLISECONDS = Duration.ofMillis(Long.parseLong(PropertyReader.getProperty("timeMilliseconds")));
     private static final Duration LONG_TIME_OUT = Duration.ofSeconds(Long.parseLong(PropertyReader.getProperty("longTimeOut")));
     private static final long TIME_OUT = Long.parseLong(PropertyReader.getProperty("shortTimeOut"));
@@ -40,6 +46,24 @@ public class Waiter extends BaseEntity {
             fluentWait.until(expectedConditions);
         }
     }
+
+    public static void waitForLoad() {
+        try {
+            WebDriverWait driverWait = new WebDriverWait(driver, TIME_OUT, DEFAULT_TIME_OUT);
+            ExpectedCondition<Boolean> expectation;
+            expectation = driverjs -> {
+                JavascriptExecutor js = (JavascriptExecutor) driverjs;
+                assert js != null;
+                return js.executeScript("return(jQuery.active == 0)").equals("true")
+                        &&
+                        js.executeScript("return document.readyState").toString().equals("complete");
+            };
+            driverWait.until(expectation);
+        } catch (WebDriverException ignored) {
+            logger.error("loc.err.wd.ex");
+        }
+    }
+
 
     public static void elementToBeClickable(By by) {
         fluentWait(ExpectedConditions.elementToBeClickable(by));

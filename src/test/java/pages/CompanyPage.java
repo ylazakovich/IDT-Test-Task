@@ -1,7 +1,9 @@
 package pages;
 
 import framework.BasePage;
+import framework.Waiter;
 import framework.element.TextField;
+import framework.utils.WebDriverManager;
 import labels.TextBox;
 import model.Company;
 import org.openqa.selenium.By;
@@ -15,7 +17,8 @@ public class CompanyPage extends BasePage {
 
 
     public CompanyPage(String nameCompany) {
-        super(By.xpath("//html[@class='mdl-js']"), "The page of company [" + nameCompany + "]");
+        super(By.xpath("//ul/li[contains(text(),'Сайт')]/a"), "The page of company [" + nameCompany + "]");
+        logger.step("get additional infomation about company[email,phone,website]");
         getAdditionalInfo();
         company = new Company(nameCompany);
         company.setEmail(infoBox.getTextFields().get(0));
@@ -32,6 +35,11 @@ public class CompanyPage extends BasePage {
     }
 
     private TextBox getAdditionalInfo() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         emailField = new TextField(By.xpath("//ul/li[contains(text(),'почта')]/span"));
         phoneField = new TextField(By.xpath("//ul/li[contains(text(),'Телефон')]/span"));
         websiteField = new TextField(By.xpath("//ul/li[contains(text(),'Сайт')]/a"));

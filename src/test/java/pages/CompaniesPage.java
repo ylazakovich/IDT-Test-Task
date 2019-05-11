@@ -14,9 +14,10 @@ public class CompaniesPage extends BasePage {
 
     public CompanyPage linkCompany(int index) {
         link = new Component(By.xpath("//tbody[@role='alert']/tr[" + index +"]/td/a"), "Company linkButton");
-        logger.step("Link company [" + link.getElementText() + "]");
+        String companyName = link.getElementText();
+        logger.step("Link company [" + companyName + "]");
         link.moveToElementAndClick();
-        companyPage = new CompanyPage(link.getElementText());
+        companyPage = new CompanyPage(companyName);
         return companyPage;
     }
 
