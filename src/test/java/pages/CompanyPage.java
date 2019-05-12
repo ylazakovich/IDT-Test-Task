@@ -2,6 +2,7 @@ package pages;
 
 import framework.BasePage;
 import framework.Waiter;
+import framework.element.Component;
 import framework.element.TextField;
 import labels.TextBox;
 import model.Company;
@@ -13,17 +14,19 @@ public class CompanyPage extends BasePage {
     private TextField emailField;
     private TextField phoneField;
     private TextField websiteField;
+    private Component linkToCompanies;
     private TextBox infoBox = new TextBox();
 
     public CompanyPage(String nameCompany) {
         super(By.xpath("//ul/li[contains(text(),'Сайт')]/a"), "The page of company [" + nameCompany + "]");
-        logger.step("get additional infomation about company[email,phone,website]");
-        Waiter.waitForAjax();
-        getAdditionalInfo();
-        company = new Company(nameCompany);
-        company.setEmail(infoBox.getTextFields().get(0));
-        company.setPhone(infoBox.getTextFields().get(1));
-        company.setWebsite(infoBox.getTextFields().get(2));
+//        logger.step("get additional infomation about company[email,phone,website]");
+//        Waiter.waitForAjax();
+//        Waiter.explicitWait(driver, By.xpath("//ul/li[contains(text(),'Сайт')]/a"));
+//        getAdditionalInfo();
+//        company = new Company(nameCompany);
+//        company.setEmail(infoBox.getTextFields().get(0));
+//        company.setPhone(infoBox.getTextFields().get(1));
+//        company.setWebsite(infoBox.getTextFields().get(2));
     }
 
     public Company getCompany() {
@@ -34,6 +37,12 @@ public class CompanyPage extends BasePage {
         return infoBox;
     }
 
+    public CompaniesPage returnToCompanies() {
+        driver.get("https://companies.dev.by");
+        return new CompaniesPage();
+    }
+
+    //TODO need to fix ajax request
     private TextBox getAdditionalInfo() {
         emailField = new TextField(By.xpath("//ul/li[contains(text(),'почта')]/span"));
         phoneField = new TextField(By.xpath("//ul/li[contains(text(),'Телефон')]/span[contains(text(),'375')]"));
