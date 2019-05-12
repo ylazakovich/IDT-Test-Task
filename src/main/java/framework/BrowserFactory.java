@@ -1,10 +1,12 @@
 package framework;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import framework.utils.CapabilityGenerator;
 import framework.utils.PropertyReader;
 import framework.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
 import java.nio.file.Paths;
@@ -17,14 +19,18 @@ import java.nio.file.Paths;
  */
 public class BrowserFactory extends BaseEntity {
     private static final String OPERATION_SYSTEM_NAME = System.getProperty("os.name");
+    private static final String PROPERTY_FIREFOX = "webdriver.gecko.driver";
     private static final String PROPERTY_CHROME = "webdriver.chrome.driver";
+    private static final String DRIVER_FIREFOX = "drivers/geckodriver";
     private static final String DRIVER_CHROME = "drivers/chromedriver";
+    private static final String FIREFOX = "firefox";
     private static final String CHROME = "chrome";
     private static final String LINUX = "linux";
     private static final String BROWSER_NAME = PropertyReader.getProperty("browserName");
     private static final String DRIVER_PATH = "src/main/resources/";
     private static BrowserFactory instance;
     private WebDriver driver;
+    private NgWebDriver ngDriver;
 
     public static BrowserFactory getInstance() {
         if (instance == null) {
@@ -57,6 +63,11 @@ public class BrowserFactory extends BaseEntity {
             case CHROME:
                 setPropertyBrowser(PROPERTY_CHROME, DRIVER_CHROME);
                 driver = new ChromeDriver(CapabilityGenerator.getChromeCapability());
+
+                break;
+            case FIREFOX:
+                setPropertyBrowser(PROPERTY_FIREFOX, DRIVER_FIREFOX);
+                driver = new FirefoxDriver(CapabilityGenerator.capabilityForFirefox());
                 break;
             default:
                 setPropertyBrowser(PROPERTY_CHROME, DRIVER_CHROME);

@@ -1,7 +1,10 @@
 package framework.utils;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Allows manage current driver

@@ -47,24 +47,6 @@ public class Waiter extends BaseEntity {
         }
     }
 
-    public static void waitForLoad() {
-        try {
-            WebDriverWait driverWait = new WebDriverWait(driver, TIME_OUT, DEFAULT_TIME_OUT);
-            ExpectedCondition<Boolean> expectation;
-            expectation = driverjs -> {
-                JavascriptExecutor js = (JavascriptExecutor) driverjs;
-                assert js != null;
-                return js.executeScript("return(jQuery.active == 0)").equals("true")
-                        &&
-                        js.executeScript("return document.readyState").toString().equals("complete");
-            };
-            driverWait.until(expectation);
-        } catch (WebDriverException ignored) {
-            logger.error("loc.err.wd.ex");
-        }
-    }
-
-
     public static void elementToBeClickable(By by) {
         fluentWait(ExpectedConditions.elementToBeClickable(by));
     }
@@ -79,5 +61,23 @@ public class Waiter extends BaseEntity {
 
     public static void visibilityOfElementLocated(By by) {
         fluentWait(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public static void waitForAjax() {
+        Boolean isJqueryUsed = (Boolean) ((JavascriptExecutor) driver).executeScript("return (typeof(jQuery) != 'undefined')");
+        if (isJqueryUsed) {
+            while (true) {
+                Boolean ajaxIsComplete = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
+                if (ajaxIsComplete) {
+                    System.out.println("Ajax Call completed. ");
+                    break;
+                }
+                try {
+                    Thread.sleep(150);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

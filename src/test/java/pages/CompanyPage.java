@@ -3,10 +3,10 @@ package pages;
 import framework.BasePage;
 import framework.Waiter;
 import framework.element.TextField;
-import framework.utils.WebDriverManager;
 import labels.TextBox;
 import model.Company;
 import org.openqa.selenium.By;
+
 
 public class CompanyPage extends BasePage {
     private Company company;
@@ -15,10 +15,10 @@ public class CompanyPage extends BasePage {
     private TextField websiteField;
     private TextBox infoBox = new TextBox();
 
-
     public CompanyPage(String nameCompany) {
         super(By.xpath("//ul/li[contains(text(),'Сайт')]/a"), "The page of company [" + nameCompany + "]");
         logger.step("get additional infomation about company[email,phone,website]");
+        Waiter.waitForAjax();
         getAdditionalInfo();
         company = new Company(nameCompany);
         company.setEmail(infoBox.getTextFields().get(0));
@@ -35,13 +35,8 @@ public class CompanyPage extends BasePage {
     }
 
     private TextBox getAdditionalInfo() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         emailField = new TextField(By.xpath("//ul/li[contains(text(),'почта')]/span"));
-        phoneField = new TextField(By.xpath("//ul/li[contains(text(),'Телефон')]/span"));
+        phoneField = new TextField(By.xpath("//ul/li[contains(text(),'Телефон')]/span[contains(text(),'375')]"));
         websiteField = new TextField(By.xpath("//ul/li[contains(text(),'Сайт')]/a"));
         infoBox.addTextField(emailField);
         infoBox.addTextField(phoneField);
