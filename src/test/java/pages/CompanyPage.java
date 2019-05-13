@@ -11,9 +11,7 @@ import org.openqa.selenium.By;
 
 public class CompanyPage extends BasePage {
     private Company company;
-    private TextField emailField;
-    private TextField phoneField;
-    private TextField websiteField;
+    private TextField emailField, phoneField, websiteField;
     private Component linkToCompanies;
     private TextBox infoBox = new TextBox();
 

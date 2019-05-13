@@ -1,11 +1,7 @@
 package model;
 
 public class Company {
-    private String name;
-    private String email;
-    private String phone;
-    private String website;
-
+    private String name, email, phone, website;
 
     public Company() {
     }
