@@ -30,7 +30,6 @@ public class BrowserFactory extends BaseEntity {
     private static final String DRIVER_PATH = "src/main/resources/";
     private static BrowserFactory instance;
     private WebDriver driver;
-    private NgWebDriver ngDriver;
 
     public static BrowserFactory getInstance() {
         if (instance == null) {

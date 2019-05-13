@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 /**
- * Realize imlicit/explicit/fluent waits
+ * Realize imlicit/explicit/fluent/waitAjax waits
  *
  * @author Yaroslav Lazakovich
  * @version 1.0
