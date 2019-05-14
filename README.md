@@ -1,9 +1,11 @@
 "# IDT-Test-Task" 
 
 Need to fix ajax request 
-(POST https://companies.dev.by/recaptcha) 
-waitAjax or explicitWait doesn't help, 
-CapabilityGenerator and firefoxdriver too
+(POST https://companies.dev.by/recaptcha)
+ 
+1) waitAjax or explicitWait doesn't help, 
+2) changing capabilitites in CapabiltyGenerator doesn't help
+3) using Selenide too
 
 ## GENERAL REQUIREMENTS (STEPS)
 1) Open Dev.by
